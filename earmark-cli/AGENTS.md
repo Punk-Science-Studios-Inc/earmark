@@ -66,7 +66,7 @@ Input (file or playlist entry)
 - NIP-65 relay discovery for relay selection
 - kind-10063 for Blossom server discovery (unioned with built-in defaults)
 - Built-in relay defaults: `relay.towerofsong.ca`, `relay.primal.net`
-- Built-in Blossom server defaults: `blossom.towerofsong.ca` (primary), `blossom.band`, `cdn.satellite.earth`
+- Built-in Blossom server defaults: `blossom.towerofsong.ca`
 
 ### Offline queue
 

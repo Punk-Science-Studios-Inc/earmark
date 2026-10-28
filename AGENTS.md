@@ -39,7 +39,7 @@ Changing any of these breaks the other client. Verify both sides before touching
 | Blossom auth | kind 24242 signed tokens (BUD-01/11), on both upload and download |
 | Blossom server discovery | kind 10063, unioned with built-in defaults |
 | Default relays | `wss://relay.towerofsong.ca`, `wss://relay.primal.net` |
-| Default Blossom servers | `blossom.towerofsong.ca` (primary), `blossom.band`, `cdn.satellite.earth` |
+| Default Blossom servers | `blossom.towerofsong.ca` |
 | Earmark lifetime | 30 days, auto-purged |
 | Channel state event | `30001`, `d` tag = `"earmark-channels"`, self-encrypted like the earmark list |
 | Channel transport | NIP-59 gift wrap — rumor kind `1737`, seal `13`, gift wrap `1059`. One wrap per member per message |
