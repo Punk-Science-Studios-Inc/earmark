@@ -30,8 +30,10 @@ jobs:
           distribution: temurin
           java-version: '21'
 
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
+      # Android SDK is preinstalled on ubuntu-latest runners with licenses
+      # accepted. Do NOT use android-actions/setup-android: its default
+      # package list includes the obsolete 'tools' package, which Google
+      # removed and which fails the job before gradle runs.
 
       - name: Run unit tests
         run: ./gradlew testDebugUnitTest --no-daemon --stacktrace
