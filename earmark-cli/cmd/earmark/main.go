@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"runtime/debug"
 	"strings"
 	"time"
 
@@ -16,6 +17,37 @@ import (
 
 // Version is the build version, injected at build time via ldflags.
 var Version = "dev"
+
+// buildVersion returns Version, or for an un-stamped build (go install) the
+// git commit Go embedded in the binary, marked "-dirty" if the tree had edits.
+func buildVersion() string {
+	if Version != "dev" {
+		return Version
+	}
+	info, ok := debug.ReadBuildInfo()
+	if !ok {
+		return Version
+	}
+	var rev, modified string
+	for _, s := range info.Settings {
+		switch s.Key {
+		case "vcs.revision":
+			rev = s.Value
+		case "vcs.modified":
+			modified = s.Value
+		}
+	}
+	if rev == "" {
+		return Version
+	}
+	if len(rev) > 7 {
+		rev = rev[:7]
+	}
+	if modified == "true" {
+		rev += "-dirty"
+	}
+	return "dev-" + rev
+}
 
 func main() {
 	configureCore()
@@ -52,7 +84,8 @@ Examples:
   earmark playlist.m3u                         Upload all tracks in playlist
   earmark song.flac                            Upload a single file
   earmark --channel "Family Jams" song.flac    Upload and share to a channel`,
-		Args: cobra.ArbitraryArgs,
+		Version: buildVersion(),
+		Args:    cobra.ArbitraryArgs,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			hexKey := resolveNostrKey()
 			if hexKey == "" {
@@ -262,7 +295,7 @@ func versionCmd() *cobra.Command {
 		Short: "Print the Earmark version",
 		Args:  cobra.NoArgs,
 		Run: func(cmd *cobra.Command, _ []string) {
-			fmt.Println(Version)
+			fmt.Println(buildVersion())
 		},
 	}
 }
