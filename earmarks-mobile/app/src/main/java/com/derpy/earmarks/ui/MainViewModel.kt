@@ -551,7 +551,7 @@ class MainViewModel(app: Application) : AndroidViewModel(app) {
                         "Tracks posted from now on will appear here — channels do not backfill."
                     syncChannels()
                 }
-                .onFailure { _notice.value = it.message ?: "Could not accept that invite." }
+                .onFailure { _notice.value = "Could not accept that invite: ${it.message ?: "unknown error"}" }
         }
     }
 

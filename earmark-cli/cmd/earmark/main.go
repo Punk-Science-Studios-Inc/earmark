@@ -32,7 +32,7 @@ func rootCmd() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "earmark [--source <dir>] [keyword...]",
 		Short: "Encrypt and upload music files to Blossom cloud storage via Nostr",
-		Long: `earmark finds music files (individual files, PLS/M3U playlists, or
+		Long: `Earmark finds music files (individual files, PLS/M3U playlists, or
 keyword search in a source directory), encrypts them with AES-256-GCM,
 uploads to Blossom servers, and records the manifest in a private Nostr list.
 
@@ -110,7 +110,7 @@ Examples:
 func runLegacyMigration(hexKey string) {
 	n, err := core.MigrateLegacyEarmarks(hexKey)
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "warning: legacy list migration: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Warning: legacy list migration: %v\n", err)
 		return
 	}
 	if n > 0 {
@@ -259,7 +259,7 @@ Pass an empty string to clear the saved key:
 func versionCmd() *cobra.Command {
 	return &cobra.Command{
 		Use:   "version",
-		Short: "Print the earmark version",
+		Short: "Print the Earmark version",
 		Args:  cobra.NoArgs,
 		Run: func(cmd *cobra.Command, _ []string) {
 			fmt.Println(Version)
@@ -349,7 +349,7 @@ Tracks that exist locally are skipped.`,
 				fmt.Printf("[%d/%d] %s: downloading...\n", i+1, len(earmarks), desc)
 				ctx, cancel := context.WithTimeout(context.Background(), 5*time.Minute)
 				tmp, err := core.DownloadAndReassemble(ctx, e.Blossom, hexKey, func(done, total int) {
-					fmt.Printf("  chunk %d/%d\n", done, total)
+					fmt.Printf("  Chunk %d/%d\n", done, total)
 				})
 				cancel()
 				if err != nil {

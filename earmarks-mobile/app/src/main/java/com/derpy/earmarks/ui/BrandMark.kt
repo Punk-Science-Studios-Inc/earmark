@@ -100,7 +100,7 @@ fun Wordmark(
         BuildDots(dotSize = (fontSizeSp * 0.5f).dp, color = dotColor)
         Spacer(Modifier.width((fontSizeSp * 0.45f).dp))
         Text(
-            "earmarks",
+            "Earmarks",
             color = color,
             fontSize = fontSizeSp.sp,
             fontWeight = FontWeight.Medium,
@@ -123,7 +123,7 @@ fun SplashScreen() {
         BuildDots(dotSize = 28.dp, animated = true)
         Spacer(Modifier.height(28.dp))
         Text(
-            "earmarks",
+            "Earmarks",
             color = MaterialTheme.colorScheme.onBackground,
             fontSize = 40.sp,
             fontWeight = FontWeight.Bold,
