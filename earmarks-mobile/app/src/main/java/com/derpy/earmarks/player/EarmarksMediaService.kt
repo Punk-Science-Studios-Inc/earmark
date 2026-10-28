@@ -132,7 +132,7 @@ class EarmarksMediaService : MediaLibraryService() {
             NOTIFICATION_CHANNEL_ID,
             "Playback",
             NotificationManager.IMPORTANCE_LOW  // silent but visible
-        ).apply { description = "earmarks playback controls" }
+        ).apply { description = "Earmarks playback controls" }
         getSystemService(NotificationManager::class.java).createNotificationChannel(channel)
     }
 

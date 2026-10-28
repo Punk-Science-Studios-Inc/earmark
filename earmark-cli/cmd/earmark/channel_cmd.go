@@ -100,7 +100,7 @@ replacing it is an explicit choice. That is what --publish is for.`,
 			defer cancel()
 
 			if !publish {
-				step("looking up your inbox relay list")
+				step("Looking up your inbox relay list")
 				current := core.FetchInboxRelays(ctx, pub)
 				if len(current) == 0 {
 					fmt.Println("No inbox relay list published yet.")
@@ -116,7 +116,7 @@ replacing it is an explicit choice. That is what --publish is for.`,
 			}
 
 			relays := core.Relays()
-			step("overwriting your inbox relay list with %d configured relay(s)", len(relays))
+			step("Overwriting your inbox relay list with %d configured relay(s)", len(relays))
 			if err := core.PublishInboxRelays(ctx, hexKey, relays); err != nil {
 				return err
 			}
@@ -144,12 +144,12 @@ func channelCreateCmd() *cobra.Command {
 			}
 			ctx, cancel := channelContext()
 			defer cancel()
-			step("reading channel state from relays")
+			step("Reading channel state from relays")
 			ch, err := core.CreateChannel(ctx, hexKey, args[0])
 			if err != nil {
 				return err
 			}
-			step("published")
+			step("Published")
 			fmt.Printf("Created channel %q (%s)\n", ch.Descriptor.Name, ch.Descriptor.ID[:12])
 			fmt.Printf("Invite someone:  earmark channel invite %q <npub>\n", ch.Descriptor.Name)
 			return nil
@@ -169,7 +169,7 @@ func channelListCmd() *cobra.Command {
 			}
 			ctx, cancel := channelContext()
 			defer cancel()
-			step("reading channel state from relays")
+			step("Reading channel state from relays")
 			st, err := core.LoadChannelState(ctx, hexKey)
 			if err != nil {
 				return err
@@ -179,9 +179,9 @@ func channelListCmd() *cobra.Command {
 			} else {
 				fmt.Printf("%d channel(s):\n\n", len(st.Channels))
 				for _, c := range st.Channels {
-					role := "member"
+					role := "Member"
 					if c.IsCreator(mustPubKey(hexKey)) {
-						role = "creator"
+						role = "Creator"
 					}
 					fmt.Printf("  %-24s  %2d member(s)  %-8s  %s\n",
 						c.Descriptor.Name, len(c.Members), role, c.Descriptor.ID[:12])
@@ -252,7 +252,7 @@ func channelInviteCmd() *cobra.Command {
 			}
 			ctx, cancel := channelContext()
 			defer cancel()
-			step("reading channel state, then sending an encrypted invite")
+			step("Reading channel state, then sending an encrypted invite")
 			if err := core.InviteToChannel(ctx, hexKey, args[0], memberPub); err != nil {
 				return err
 			}
@@ -287,7 +287,7 @@ func channelRemoveCmd() *cobra.Command {
 			}
 			ctx, cancel := channelContext()
 			defer cancel()
-			step("updating the roster and notifying members")
+			step("Updating the roster and notifying members")
 			if err := core.RemoveFromChannel(ctx, hexKey, args[0], memberPub); err != nil {
 				return err
 			}
@@ -331,7 +331,7 @@ func channelInvitesCmd() *cobra.Command {
 			}
 			ctx, cancel := channelContext()
 			defer cancel()
-			step("fetching gift wraps")
+			step("Fetching gift wraps")
 			_, st, err := core.SyncChannels(ctx, hexKey)
 			if err != nil {
 				return err
@@ -364,7 +364,7 @@ func printInvites(heading string, invites []core.ChannelInvite) {
 	}
 	fmt.Printf("%s:\n\n", heading)
 	for _, inv := range invites {
-		fmt.Printf("  %-24s  %2d member(s)  from %s\n     id: %s\n",
+		fmt.Printf("  %-24s  %2d member(s)  from %s\n     ID: %s\n",
 			inv.Descriptor.Name, len(inv.Members),
 			core.NpubFromPublicKey(inv.From), inv.Descriptor.ID)
 	}
@@ -440,7 +440,7 @@ is one small event per member.`,
 			}
 			ctx, cancel := channelContext()
 			defer cancel()
-			step("wrapping and publishing to each member")
+			step("Wrapping and publishing to each member")
 			if err := core.PostToChannel(ctx, hexKey, args[0], *match); err != nil {
 				return err
 			}
@@ -501,7 +501,7 @@ func channelFeedCmd() *cobra.Command {
 			}
 			ctx, cancel := channelContext()
 			defer cancel()
-			step("fetching gift wraps")
+			step("Fetching gift wraps")
 			posts, st, err := core.SyncChannels(ctx, hexKey)
 			if err != nil {
 				return err

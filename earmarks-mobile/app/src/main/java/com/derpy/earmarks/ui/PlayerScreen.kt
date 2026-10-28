@@ -349,7 +349,7 @@ private fun StatsPanel(stats: BlossomStats) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    "blossom storage",
+                    "Blossom storage",
                     style = MaterialTheme.typography.labelMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )

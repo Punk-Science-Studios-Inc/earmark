@@ -132,24 +132,24 @@ func renderItem(it uploadItem) string {
 	var status string
 	switch it.state {
 	case stPending:
-		status = dimStyle.Render("pending")
+		status = dimStyle.Render("Pending")
 	case stDone:
 		frac = 1
-		status = doneStyle.Render("done ✓")
+		status = doneStyle.Render("Done ✓")
 	case stFailed:
-		status = failStyle.Render("failed ✗")
+		status = failStyle.Render("Failed ✗")
 	case stActive:
 		switch it.phase {
 		case phaseEncrypting:
-			status = dimStyle.Render("encrypting…")
+			status = dimStyle.Render("Encrypting…")
 		case phaseDiscovering:
-			status = dimStyle.Render("finding servers…")
+			status = dimStyle.Render("Finding servers…")
 		case phaseSaving:
 			frac = 1
-			status = dimStyle.Render("saving…")
+			status = dimStyle.Render("Saving…")
 		case phasePosting:
 			frac = 1
-			status = dimStyle.Render("posting…")
+			status = dimStyle.Render("Posting…")
 		default: // phaseUploading
 			status = fmt.Sprintf("%3.0f%%  %s/%s", frac*100,
 				humanBytes(it.bytesDone), humanBytes(it.bytesTotal))
