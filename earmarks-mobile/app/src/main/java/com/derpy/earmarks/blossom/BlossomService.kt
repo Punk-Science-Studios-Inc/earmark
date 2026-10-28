@@ -27,15 +27,14 @@ import java.util.concurrent.TimeUnit
 /**
  * The Blossom servers this client uses: the destinations an adopted track is
  * mirrored to, and the servers a chunk is looked for on when its manifest does
- * not say. `blossom.towerofsong.ca` is the self-hosted primary the Go clients
- * upload to; `blossom.band` is the public fallback.
+ * not say. `blossom.towerofsong.ca` is the self-hosted server the Go clients
+ * upload to.
  *
  * Matches the Go clients' built-in defaults. kind-10063 discovery is a desktop
  * concern for now, so the phone works from this fixed list.
  */
 val DEFAULT_BLOSSOM_SERVERS = listOf(
-    "https://blossom.towerofsong.ca",
-    "https://blossom.band"
+    "https://blossom.towerofsong.ca"
 )
 
 /**

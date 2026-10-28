@@ -145,8 +145,7 @@ After decryption, `JSON.parse` the plaintext. It is an array of earmark objects:
           "sha256": "abcdef1234567890...",
           "size": 16777244,
           "servers": [
-            "https://blossom.band",
-            "https://cdn.satellite.earth"
+            "https://blossom.towerofsong.ca"
           ]
         },
         {
@@ -154,7 +153,7 @@ After decryption, `JSON.parse` the plaintext. It is an array of earmark objects:
           "sha256": "fedcba9876543210...",
           "size": 8388636,
           "servers": [
-            "https://blossom.band"
+            "https://blossom.towerofsong.ca"
           ]
         }
       ]
@@ -639,7 +638,7 @@ Web of trust does **not** grant access and is not a discovery mechanism. Members
 | AES-GCM nonce size | 12 bytes |
 | AES-GCM tag size | 16 bytes |
 | Default relays | relay.towerofsong.ca, relay.primal.net |
-| Default Blossom servers | blossom.band, cdn.satellite.earth, nostr.build |
+| Default Blossom servers | blossom.towerofsong.ca |
 
 ---
 

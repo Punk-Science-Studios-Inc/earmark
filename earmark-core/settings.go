@@ -25,14 +25,11 @@ var defaultRelays = []string{
 }
 
 // defaultBlossomServers is the fallback list used when the host has not
-// configured any servers. blossom.towerofsong.ca is the primary (self-hosted)
-// server; the others are public fallbacks that accept encrypted blob uploads
-// from any authenticated pubkey. Media-only hosts (e.g. nostr.build) are
-// excluded because they reject encrypted octet-stream blobs with 415.
+// configured any servers. blossom.towerofsong.ca is the self-hosted server.
+// Public hosts tried as fallbacks rejected encrypted uploads (blossom.band and
+// nostr.build with 415, cdn.satellite.earth with 404), so none are listed.
 var defaultBlossomServers = []string{
 	"https://blossom.towerofsong.ca",
-	"https://blossom.band",
-	"https://cdn.satellite.earth",
 }
 
 // defaultUploadIdleTimeout is how long an upload may make no progress before it
